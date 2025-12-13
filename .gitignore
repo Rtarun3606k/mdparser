@@ -1,1 +1,4 @@
 test_internal
+__pycache__/
+*.pyc
+.env
