@@ -8,6 +8,9 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
 
     steps:
       - uses: actions/checkout@v4
@@ -18,11 +21,11 @@ jobs:
 
       - name: Build
         run: |
-          pip install build
+          python -m pip install --upgrade build
           python -m build
 
       - name: Publish
         uses: pypa/gh-action-pypi-publish@v1.10.0
         with:
           repository-url: https://test.pypi.org/legacy/
-          password: ${{ secrets.TEST_PYPI_TOKEN }}
+
