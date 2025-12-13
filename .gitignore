@@ -2,3 +2,5 @@ test_internal
 __pycache__/
 *.pyc
 .env
+dist
+*egg-info
