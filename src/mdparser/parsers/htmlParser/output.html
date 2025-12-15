@@ -1,0 +1,394 @@
+
+        <html>
+        <head>
+        <title>Test Markdown</title>
+        <meta charset="UTF-8">
+
+        </head>
+        <body>
+        <h1>Heading Level 1</h1>
+
+<p>Some text under H1 with <strong>bold</strong>, <em>italic</em>, and <code>inline code</code>.</p>
+
+<h2>Heading Level 2</h2>
+
+<p>More text with <strong>bold and <em>nested italic</em> inside</strong>.</p>
+
+<h3>Heading Level 3</h3>
+
+<p>Mixing formatting: <em>italic with <code>inline code</code> inside</em> and <strong>bold</strong>.</p>
+
+<h4>Heading Level 4</h4>
+
+<p>A tricky line: <strong>bold with <em>italic and <code>code</code> inside</em> bold</strong>.</p>
+
+<h5>Heading Level 5</h5>
+
+<p>Below is a code snippet:</p>
+
+<h6>Heading Level 6</h6>
+
+<p>Inline formatting in paragraphs:</p>
+<p>This is <strong>bold</strong>, this is <em>italic</em>, and this is <code>code</code>.</p>
+
+<h7>Heading Level 7</h7>
+<p>Paragraph mixing formats:</p>
+<strong>Start <em>middle <code>code</code> middle</em> end</strong>
+
+<h8>Heading Level 8</h8>
+<p>Final line with everything:</p>
+<p><strong>Bold text</strong>, <em>italic text</em>, and <code>inline code</code> all in one sentence.</p>
+
+<p>---</p>
+
+<h2>Unordered List Test</h2>
+
+<ul>
+<li>Apple</li>
+<li>Banana</li>
+<li>Cherry</li>
+</ul>
+
+<h2>Ordered List Torture Test</h2>
+
+<p>This paragraph comes before an ordered list.</p>
+
+<ol>
+<li>First item</li>
+<li>Second item with <em>italic</em> text</li>
+<li>Third item with <strong>bold</strong> text</li>
+</ol>
+
+<p>Here is another paragraph between lists.</p>
+
+<ol>
+<li>This list restarts numbering</li>
+<li>Item with nested formatting <strong>bold <em>italic <code>code</code> inside</em> bold</strong></li>
+<li>Item with multiple lines:</li>
+</ol>
+<p>This line should belong to the same list item.</p>
+<p>So should this line.</p>
+
+<h3>Section Break</h3>
+
+<p>Another paragraph.</p>
+
+<ol>
+<li>This list starts at 10 (valid markdown)</li>
+<li>Next item</li>
+<li>Non-consecutive numbering is allowed</li>
+<li>Item with inline code: <code>print("hello")</code></li>
+</ol>
+
+<p>Paragraph mixing formats: <em>italic</em>, <strong>bold</strong>, and <code>code</code>.</p>
+
+<ol>
+<li>Item with weird spacing after number</li>
+<li>Item with leading spaces before number should not be a list</li>
+<li>This line begins with a space → should NOT be parsed as list</li>
+<li>Last item with bold and code: <strong>value = <code>42</code></strong></li>
+</ol>
+
+<p>Final paragraph after all lists.</p>
+
+<p>---</p>
+
+<h2>Fenced Div Test</h2>
+
+<div class="hero">
+
+        <html>
+        <head>
+        <title>Markdown to HTML</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
+
+        </head>
+        <body>
+        <h1>Welcome</h1>
+
+<p>This is a hero section.</p>
+<p>Here is another paragraph between lists.</p>
+
+<ol>
+<li>This list restarts numbering</li>
+<li>Item with nested formatting <strong>bold <em>italic <code>code</code> inside</em> bold</strong></li>
+<li>Item with multiple lines:</li>
+</ol>
+<p>This line should belong to the same list item.</p>
+<p>So should this line.</p>
+
+<h3>Section Break</h3>
+
+<p>Another paragraph.</p>
+
+<ol>
+<li>This list starts at 10 (valid markdown)</li>
+<li>Next item</li>
+<li>Non-consecutive numbering is allowed</li>
+<li>Item with inline code: <code>print("hello")</code></li>
+</ol>
+
+<p>Paragraph mixing formats: <em>italic</em>, <strong>bold</strong>, and <code>code</code>.</p>
+
+<ol>
+<li>Item with weird spacing after number</li>
+<li>Item with leading spaces before number should not be a list</li>
+<li>This line begins with a space → should NOT be parsed as list</li>
+<li>Last item with bold and code: <strong>value = <code>42</code></strong></li>
+</ol>
+
+<p>Final paragraph inside hero block.</p>
+        </body>
+        </html>
+
+</div><pre><code class="language-py">
+<p>print("hello")</p>
+<p>print("world")</p>
+</code></pre>
+
+<div class="hero">
+
+        <html>
+        <head>
+        <title>Markdown to HTML</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
+
+        </head>
+        <body>
+        <pre><code class="language-py">
+print("hello")
+    print("world")
+</code></pre>
+        </body>
+        </html>
+
+</div><code><pre><code class="language-python">
+ re
+
+<h1>-------------------------------</h1>
+<h1>BLOCK: HEADINGS</h1>
+<h1>-------------------------------</h1>
+def parse_headings(text):
+    text = re.sub(r'<h8>(.*)', r'&lt;h8&gt;\1&lt;/h8&gt;', text)</h8>
+    text = re.sub(r'<h7>(.*)', r'&lt;h7&gt;\1&lt;/h7&gt;', text)</h7>
+    text = re.sub(r'<h6>(.*)', r'&lt;h6&gt;\1&lt;/h6&gt;', text)</h6>
+    text = re.sub(r'<h5>(.*)', r'&lt;h5&gt;\1&lt;/h5&gt;', text)</h5>
+    text = re.sub(r'<h4>(.*)', r'&lt;h4&gt;\1&lt;/h4&gt;', text)</h4>
+    text = re.sub(r'<h3>(.*)', r'&lt;h3&gt;\1&lt;/h3&gt;', text)</h3>
+    text = re.sub(r'<h2>(.*)', r'&lt;h2&gt;\1&lt;/h2&gt;', text)</h2>
+    text = re.sub(r'<h1>(.*)', r'&lt;h1&gt;\1&lt;/h1&gt;', text)</h1>
+    return text
+
+
+<h1>-------------------------------</h1>
+<h1>INLINE: BOLD, ITALIC, CODE</h1>
+<h1>-------------------------------</h1>
+def parse_inline(text):
+    <h1>bold</h1>
+    text = re.sub(r'\<em>\</em>(.<em>?)\</em>\*', r'&lt;strong&gt;\1&lt;/strong&gt;', text)
+
+    <h1>italic: <em>text</em></h1>
+    text = re.sub(r'\<em>(.</em>?)\*', r'&lt;em&gt;\1&lt;/em&gt;', text)
+
+    <h1>italic: <em>text</em></h1>
+    text = re.sub(r'<em>(.*?)</em>', r'&lt;em&gt;\1&lt;/em&gt;', text)
+
+    <h1>inline code</h1>
+    text = re.sub(r'</code>([^<code>]*)</code>', r'&lt;code&gt;\1&lt;/code&gt;', text)
+
+    return text
+
+
+<h1>-------------------------------</h1>
+<h1>LISTS: UL + OL</h1>
+<h1>-------------------------------</h1>
+def unorderedList(match):
+    items = match.group(0).strip().split("\n")
+    list_items = "".join([f"&lt;li&gt;{item[2:].strip()}&lt;/li&gt;\n" for item in items])
+    return f"&lt;ul&gt;\n{list_items}&lt;/ul&gt;"
+
+def orderedList(match):
+    items = match.group(0).strip().split("\n")
+    list_items = ""
+    for item in items:
+        _, text = item.split(". ", 1)
+        list_items += f"&lt;li&gt;{text.strip()}&lt;/li&gt;\n"
+    return f"&lt;ol&gt;\n{list_items}&lt;/ol&gt;"
+
+def parse_lists(text):
+    text = re.sub(r'(^- .+(?:\n- .+)*)', unorderedList, text, flags=re.MULTILINE)
+    text = re.sub(r'(^\d+\. .+(?:\n\d+\. .+)*)', orderedList, text, flags=re.MULTILINE)
+    return text
+
+
+<h1>-------------------------------</h1>
+<h1>FENCED DIVS (RECURSIVE)</h1>
+<h1>-------------------------------</h1>
+def fenced_div(match):
+    class_name = match.group(1)
+    inner_markdown = match.group(2).strip()
+
+    <h1>recursive parse!</h1>
+    inner<em>html = parse</em>markdown(inner_markdown)
+
+    return f'&lt;div class="{class<em>name}"&gt;\n{inner</em>html}\n&lt;/div&gt;'
+
+def parse<em>fenced</em>divs(text):
+    return re.sub(
+        r':::\s<em>(\w+)\s</em>\n(.<em>?)\n:::\s</em>',
+        fenced_div,
+        text,
+        flags=re.S
+    )
+
+
+<h1>-------------------------------</h1>
+<h1>PARAGRAPHS</h1>
+<h1>-------------------------------</h1>
+def wrap_paragraphs(html):
+    lines = html.split("\n")
+    result = []
+    in<em>pre</em>block = False
+    for line in lines:
+        stripped = line.strip()
+
+        if not stripped:
+            result.append("")
+            continue
+                <h1>detect start of code block</h1>
+        if stripped.startswith("&lt;pre&gt;") or stripped.startswith("&lt;pre "):
+            in<em>pre</em>block = True
+            result.append(line)
+            continue
+
+        <h1>detect end of code block</h1>
+        if stripped.startswith("&lt;/pre&gt;"):
+            in<em>pre</em>block = False
+            result.append(line)
+            continue
+
+        <h1>if inside &lt;pre&gt;...&lt;/pre&gt; → do NOT wrap</h1>
+        if in<em>pre</em>block:
+            result.append(line)
+            continue
+
+        if (stripped.startswith("&lt;h") and stripped.endswith("&gt;")) \
+           or stripped.startswith("&lt;ol&gt;") or stripped.startswith("&lt;ul&gt;") \
+           or stripped.startswith("&lt;/ol&gt;") or stripped.startswith("&lt;/ul&gt;") \
+           or stripped.startswith("&lt;li&gt;") \
+           or stripped.startswith("&lt;pre&gt;") or stripped.startswith("&lt;/pre&gt;") \
+           or stripped.startswith("&lt;code&gt;") or stripped.startswith("&lt;/code&gt;") \
+           or (stripped.startswith("&lt;") and stripped.endswith("&gt;")) \
+          or stripped.startswith("&lt;/div&gt;") or stripped.startswith("&lt;div") :
+            result.append(line)
+            continue
+
+        result.append(f"&lt;p&gt;{stripped}&lt;/p&gt;")
+
+    return "\n".join(result)
+
+
+
+<h1>-------------------------------</h1>
+<h1>CODE BLOCKS</h1>
+<h1>-------------------------------</h1>
+def normalize_language(lang):
+    <h1>no lang or 1-character lang → treat as missing</h1>
+    if not lang or len(lang) &lt;= 1:
+        return "bash"
+    return lang.lower()
+
+def code_block(match):
+    language = match.group(1)
+    code_content = match.group(2)
+
+    lang = normalize_language(language)
+
+    return f'&lt;pre&gt;&lt;code class="language-{lang}"&gt;\n{code_content}\n&lt;/code&gt;&lt;/pre&gt;'
+
+def parse_code(text):
+    return re.sub(r'<code></code><code>(\w+)\s<em>\n(.</em>?)\n</code><code></code>',code_block, text, flags=re.S)
+
+
+<h1>-------------------------------</h1>
+<h1>MAIN PIPELINE</h1>
+<h1>-------------------------------</h1>
+def parse_markdown(text):
+    text = parse<em>fenced</em>divs(text)
+    text = parse_code(text)          <h1>MUST BE FIRST!!</h1>
+    text = parse_headings(text)
+    text = parse_lists(text)
+    text = parse_inline(text)
+    text = wrap_paragraphs(text)
+    return text
+
+
+<h1>-------------------------------</h1>
+<h1>RUN</h1>
+<h1>-------------------------------</h1>
+if <em></em>name<em></em> == "<em></em>main<em></em>":
+    with open("test.md") as f:
+        content = f.read()
+    html = '''
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Markdown to HTML&lt;/title&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"&gt;
+&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"&gt;&lt;/script&gt;
+&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css"&gt;
+&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"&gt;&lt;/script&gt;
+&lt;script&gt;hljs.highlightAll();&lt;/script&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+
+'''
+    html += parse_markdown(content)
+    html += '''
+&lt;/body&gt;
+&lt;/html&gt;
+'''
+    with open("output.html", "w") as f:
+        f.write(html)
+
+    print("Converted!")
+
+
+</code></pre><code>
+
+</code><pre><code class="language-bash">
+echo "Converted!"
+</code></pre>
+
+<pre><code class="language-bash">
+echo "Converted!"
+</code></pre>
+
+<pre><code class="language-bash">
+echo "Converted!"
+</code></pre>
+
+<img src="https://source.unsplash.com/random/800x600/?nature" alt="A beautiful nature photo" />
+<img src="https://picsum.photos/200/300" alt="A beautiful nature photo" />
+
+<img src="https://picsum.photos/200/300" alt="A cat" title="Cute Cat" />
+
+<code></code><code></code>
+
+        </body>
+        </html>
+        
