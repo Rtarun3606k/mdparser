@@ -89,36 +89,72 @@ def parse_lists(text):
 # -------------------------------
 # FENCED DIVS (RECURSIVE)
 # -------------------------------
-def _fenced_div(match):
-    """Convert fenced divs in Markdown to HTML divs.
-    Args:
-        match (re.Match): Regex match object for fenced div.
-    Returns:
-        str: HTML div with specified class.
-    """
-    class_name = match.group(1)
-    inner_markdown = match.group(2).strip()
 
-    # recursive parse!
-    inner_html = parse_markdown(inner_markdown)
+# FENCED_DIV_RE = re.compile(
+#     r':::\s*([^\n]*)\n(.*?)\n:::',
+#     re.S
+# )
+#
+# def _parse_fenced_divs(match):
+#     classes = match.group(1).strip()
+#     inner_md = match.group(2)
+#
+#     # ✅ RECURSE USING THE SAME HANDLER
+#     inner_md = FENCED_DIV_RE.sub(_parse_fenced_divs, inner_md)
+#
+#     # Parse remaining markdown without full HTML
+#     inner_html = parse_markdown(inner_md, full_html=False)
+#
+#     return f'<div class="{classes}">\n{inner_html}\n</div>'
+#
+#
+# def parse_fenced_divs(text: str) -> str:
+#     """Convert fenced divs in Markdown to HTML divs."""
+#     return FENCED_DIV_RE.sub(_parse_fenced_divs, text)
 
-    return f'<div class="{class_name}">\n{inner_html}\n</div>'
+#small fix to make it recursive (works with nested divs and its state machine)
+def parse_fenced_divs(text: str) -> str:
+    lines = text.splitlines()
+    stack = []
+    output = []
 
-def parse_fenced_divs(text):
-    """Convert fenced divs in Markdown to HTML divs.
-    Args:
-        text (str): Markdown source text.
-    Returns:
-        str: Text with fenced divs converted to HTML divs.
-    """
-    return re.sub(
-        r':::\s*(\w+)\s*\n(.*?)\n:::\s*',
-        _fenced_div,
-        text,
-        flags=re.S
-    )
+    for line in lines:
+        stripped = line.strip()
+
+        if stripped.startswith(":::"):
+            class_name = stripped[3:].strip()
+
+            # Closing div
+            if stack and class_name == "":
+                block = stack.pop()
+                inner_md = "\n".join(block["content"])
+                inner_html = parse_markdown(inner_md, full_html=False)
+
+                div_html = f'<div class="{block["class"]}">\n{inner_html}\n</div>'
+
+                if stack:
+                    stack[-1]["content"].append(div_html)
+                else:
+                    output.append(div_html)
+
+            # Opening div
+            else:
+                stack.append({
+                    "class": class_name,
+                    "content": []
+                })
+
+        else:
+            if stack:
+                stack[-1]["content"].append(line)
+            else:
+                output.append(line)
+
+    return "\n".join(output)
 
 
+
+#
 # -------------------------------
 # PARAGRAPHS
 # -------------------------------
@@ -235,10 +271,9 @@ def _parse_image(match):
 def parse_images(text):
     return re.sub(
         r'!\[(.*?)\]\((.*?)(?:\s+"(.*?)")?\)',
-        _parse_image,
-        text
-    )
-
+    _parse_image,
+    text
+  )
 
 
 
@@ -259,6 +294,7 @@ def _html_string(text:str,include_cdn:bool=True,title:str='Markdown to HTML')->s
         <html>
         <head>
         <title>{title}</title>
+      <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
         <meta charset="UTF-8">
 
         </head>
@@ -277,6 +313,7 @@ def _html_string(text:str,include_cdn:bool=True,title:str='Markdown to HTML')->s
         <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
         <script>hljs.highlightAll();</script>
 
@@ -320,16 +357,16 @@ def parse_markdown(text:str,full_html:bool=True,title:str='Markdown to HTML',inc
 
 
 
+#
+# # # -------------------------------
+# # # RUN
+# # # -------------------------------
+if __name__ == "__main__":
+    with open("/home/dragoon/coding/pythonProjects/markdownToHtml/test_internal/test.md","r") as f:
+        content = f.read()
+    html = parse_markdown(content,title="Test Markdown")
+    with open("output.html", "w") as f:
+        f.write(html)
 
-# # -------------------------------
-# # RUN
-# # -------------------------------
-# if __name__ == "__main__":
-#     with open("/home/dragoon/coding/pythonProjects/markdownToHtml/test_internal/test.md","r") as f:
-#         content = f.read()
-#     html = parse_markdown(content,title="Test Markdown",include_cdn=False)
-#     with open("output.html", "w") as f:
-#         f.write(html)
-#
-#     print("Converted!")
-#
+    print("Converted!")
+
