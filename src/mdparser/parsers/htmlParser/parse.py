@@ -1,5 +1,74 @@
 import re
 
+
+def _html_string(text:str,include_cdn:bool=True,title:str='Markdown to HTML')->str:
+  """Generate a full HTML document string.
+    Args:
+text (str): HTML body content.
+  include_cdn (bool): Include syntax highlighting CDN assets.
+  title (str): Title for the HTML document.
+Returns:
+str: Full HTML document as a string.
+"""
+  if not include_cdn:
+    return f'''
+        <html>
+        <head>
+        <title>{title}</title>
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <meta charset="UTF-8">
+        <style>
+        h1 {{ font-size: 2.25rem; font-weight: 700; margin: 1em 0; }}
+        h2 {{ font-size: 1.875rem; font-weight: 600; margin: 0.9em 0; }}
+        h3 {{ font-size: 1.5rem; font-weight: 600; margin: 0.8em 0; }}
+        h4 {{ font-size: 1.25rem; font-weight: 600; margin: 0.7em 0; }}
+        h5 {{ font-size: 1.125rem; font-weight: 600; margin: 0.6em 0; }}
+        h6 {{ font-size: 1rem; font-weight: 600; margin: 0.5em 0; }}
+
+        p {{ margin: 0.75em 0; line-height: 1.6; }}
+        ul, ol {{ margin: 1em 0 1em 1.5em; }}
+        li {{ margin: 0.25em 0; }}
+        code {{ background: #f6f8fa; padding: 2px 4px; border-radius: 4px; }}
+        </style>
+        </head>
+        <body>
+        {text}
+        </body>
+        </html>
+        '''
+  else:
+    return f'''
+        <html>
+        <head>
+        <title>{title}</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
+        <style>
+        h1 {{ font-size: 2.25rem; font-weight: 700; margin: 1em 0; }}
+        h2 {{ font-size: 1.875rem; font-weight: 600; margin: 0.9em 0; }}
+        h3 {{ font-size: 1.5rem; font-weight: 600; margin: 0.8em 0; }}
+        h4 {{ font-size: 1.25rem; font-weight: 600; margin: 0.7em 0; }}
+        h5 {{ font-size: 1.125rem; font-weight: 600; margin: 0.6em 0; }}
+        h6 {{ font-size: 1rem; font-weight: 600; margin: 0.5em 0; }}
+
+        p {{ margin: 0.75em 0; line-height: 1.6; }}
+        ul, ol {{ margin: 1em 0 1em 1.5em; }}
+        li {{ margin: 0.25em 0; }}
+        code {{ background: #f6f8fa; padding: 2px 4px; border-radius: 4px; }}
+        </style>       
+        </head>
+        <body>
+        {text}
+        </body>
+        </html>
+        '''
+
 # -------------------------------
 # BLOCK: HEADINGS
 # -------------------------------
@@ -85,72 +154,6 @@ def parse_lists(text):
     text = re.sub(r'(^\d+\. .+(?:\n\d+\. .+)*)', orderedList, text, flags=re.MULTILINE)
     return text
 
-
-# -------------------------------
-# FENCED DIVS (RECURSIVE)
-# -------------------------------
-
-# FENCED_DIV_RE = re.compile(
-#     r':::\s*([^\n]*)\n(.*?)\n:::',
-#     re.S
-# )
-#
-# def _parse_fenced_divs(match):
-#     classes = match.group(1).strip()
-#     inner_md = match.group(2)
-#
-#     # ✅ RECURSE USING THE SAME HANDLER
-#     inner_md = FENCED_DIV_RE.sub(_parse_fenced_divs, inner_md)
-#
-#     # Parse remaining markdown without full HTML
-#     inner_html = parse_markdown(inner_md, full_html=False)
-#
-#     return f'<div class="{classes}">\n{inner_html}\n</div>'
-#
-#
-# def parse_fenced_divs(text: str) -> str:
-#     """Convert fenced divs in Markdown to HTML divs."""
-#     return FENCED_DIV_RE.sub(_parse_fenced_divs, text)
-
-#small fix to make it recursive (works with nested divs and its state machine)
-def parse_fenced_divs(text: str) -> str:
-    lines = text.splitlines()
-    stack = []
-    output = []
-
-    for line in lines:
-        stripped = line.strip()
-
-        if stripped.startswith(":::"):
-            class_name = stripped[3:].strip()
-
-            # Closing div
-            if stack and class_name == "":
-                block = stack.pop()
-                inner_md = "\n".join(block["content"])
-                inner_html = parse_markdown(inner_md, full_html=False)
-
-                div_html = f'<div class="{block["class"]}">\n{inner_html}\n</div>'
-
-                if stack:
-                    stack[-1]["content"].append(div_html)
-                else:
-                    output.append(div_html)
-
-            # Opening div
-            else:
-                stack.append({
-                    "class": class_name,
-                    "content": []
-                })
-
-        else:
-            if stack:
-                stack[-1]["content"].append(line)
-            else:
-                output.append(line)
-
-    return "\n".join(output)
 
 
 
@@ -275,54 +278,98 @@ def parse_images(text):
     text
   )
 
+#-----------------------------------------------
+#Table Parsing 
+#-----------------------------------------------
+
+def parse_table_block(table_md: str) -> str:
+    lines = [line.strip() for line in table_md.splitlines() if line.strip()]
+    if len(lines) < 2:
+        return ""
+
+    header = [cell.strip() for cell in lines[0].split("|")]
+    rows = [[cell.strip() for cell in row.split("|")] for row in lines[1:]]
+
+    th = lambda h: f'<th style="border:1px solid #d0d7de;padding:8px 12px;background:#f6f8fa;text-align:left;">{h}</th>'
+    td = lambda d: f'<td style="border:1px solid #d0d7de;padding:8px 12px;">{d}</td>'
+
+    thead = "<thead><tr>" + "".join(th(h) for h in header) + "</tr></thead>"
+    tbody = "<tbody>" + "".join(
+        "<tr>" + "".join(td(cell) for cell in row) + "</tr>"
+        for row in rows
+    ) + "</tbody>"
+
+    return f'''
+<table style="border-collapse:collapse;width:100%;margin:1em 0;">
+{thead}
+{tbody}
+</table>
+'''
 
 
 
 
 
-def _html_string(text:str,include_cdn:bool=True,title:str='Markdown to HTML')->str:
-    """Generate a full HTML document string.
-    Args:
-        text (str): HTML body content.
-        include_cdn (bool): Include syntax highlighting CDN assets.
-        title (str): Title for the HTML document.
-    Returns:
-        str: Full HTML document as a string.
-    """
-    if not include_cdn:
-        return f'''
-        <html>
-        <head>
-        <title>{title}</title>
-      <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-        <meta charset="UTF-8">
 
-        </head>
-        <body>
-        {text}
-        </body>
-        </html>
-        '''
-    else:
-        return f'''
-        <html>
-        <head>
-        <title>{title}</title>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script>
 
-        </head>
-        <body>
-        {text}
-        </body>
-        </html>
-        '''
+# -------------------------------
+# FENCED DIVS (RECURSIVE)
+# -------------------------------
+#small fix to make it recursive (works with nested divs and its state machine)
+def parse_fenced_divs(text: str) -> str:
+    lines = text.splitlines()
+    stack = []
+    output = []
+
+    for line in lines:
+        stripped = line.strip()
+
+        if stripped.startswith(":::"):
+            block_name = stripped[3:].strip()
+
+            # 🔒 Closing block
+            if stack and block_name == "":
+                block = stack.pop()
+                inner_md = "\n".join(block["content"])
+
+                # TABLE BLOCK
+                if block["type"] == "table":
+                    html = parse_table_block(inner_md)
+
+                # DIV BLOCK
+                else:
+                    inner_html = parse_markdown(inner_md, full_html=False)
+                    html = f'<div class="{block["class"]}">\n{inner_html}\n</div>'
+
+                if stack:
+                    stack[-1]["content"].append(html)
+                else:
+                    output.append(html)
+
+            # 🔓 Opening block
+            else:
+                if block_name == "table":
+                    stack.append({
+                        "type": "table",
+                        "content": []
+                    })
+                else:
+                    stack.append({
+                        "type": "div",
+                        "class": block_name,
+                        "content": []
+                    })
+
+        else:
+            if stack:
+                stack[-1]["content"].append(line)
+            else:
+                output.append(line)
+
+    return "\n".join(output)
+
+
+
 
 # -------------------------------
 # MAIN PIPELINE
@@ -357,7 +404,6 @@ def parse_markdown(text:str,full_html:bool=True,title:str='Markdown to HTML',inc
 
 
 
-#
 # # # -------------------------------
 # # # RUN
 # # # -------------------------------
