@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mdparser-html"
-version = "2.0.1:"
+version = "2.0.1"
 description = """
 mdparser-html is a lightweight and extensible Markdown → HTML converter with a clean Python API and CLI.
 It is designed for simplicity, hackability, and learning — without pulling in heavy dependencies.
