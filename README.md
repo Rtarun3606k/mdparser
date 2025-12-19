@@ -6,6 +6,10 @@ Built for simplicity, hackability, and future extension.
 
 ---
 
+## Documentation
+
+![API Documentation](https://mdparser.tarunnayaka.me) -> https://mdparser.tarunnayaka.me
+
 ## 🤔 Why mdparser-html?
 
 - Lightweight alternative to full Markdown engines
@@ -21,6 +25,7 @@ Built for simplicity, hackability, and future extension.
 - Fenced blocks (`:::`)
 - CLI + Python API
 - Zero runtime dependencies
+- Tailwind support
 
 ---
 
@@ -47,19 +52,48 @@ html = parse_markdown("# Hello World")
 print(html)
 ```
 
-## ⚙️ Configuration Options
+## 🎨 Styling Support
 
-# Advanced usage
+`mdparser-html` supports attaching **custom CSS or Tailwind utility classes**
+directly from Markdown using fenced blocks and headings.
+Tailwind is included automatically when `include_cdn=True` is set.
 
-```python
-html = parse_markdown(
-    markdown_text,
-    full_html=True,
-    title="My Document",
-    include_cdn=True  # Include syntax highlighting CDN links
-)
-print(html)
+Example:
+
+```md
+:::
+
+# Welcome
+
+This section is styled using Tailwind classes.
+:::
 ```
+
+# rendered as
+
+```html
+<div class="bg-blue-100 p-4 rounded-lg">
+  <h1>Welcome</h1>
+  <p>This section is styled using Tailwind classes.</p>
+</div>
+```
+
+### Styled headings
+
+```md
+## [text-green-500 font-bold] Success Heading
+```
+
+Renders as:
+
+```html
+<h2 class="text-green-500 font-bold">Success Heading</h2>
+```
+
+## ⚙️ Configuration Options # Advanced usage ```python html = parse_markdown(
+
+markdown_text, full_html=True, title="My Document", include_cdn=True # Include
+syntax highlighting CDN links ) print(html)
 
 # Body-only output
 
@@ -97,6 +131,11 @@ This is a hero section
 - Ordered & unordered lists
 - Images
 - Fenced div blocks
+- Links
+- Blockquotes
+- Horizontal rules
+- Paragraphs
+- Tables (basic)
 
 ## 🛠 Design Notes
 
@@ -117,7 +156,7 @@ Create a new file called **`CHANGELOG.md`**
 
 ## 🤝 Contributing
 
-Pull requests are welcome.  
+Pull requests are welcome.
 Please open an issue before major changes.
 
 ## License
