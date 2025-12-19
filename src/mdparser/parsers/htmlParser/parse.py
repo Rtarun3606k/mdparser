@@ -72,22 +72,123 @@ str: Full HTML document as a string.
 # -------------------------------
 # BLOCK: HEADINGS
 # -------------------------------
+
 def parse_headings(text):
-    """Convert Markdown headings to HTML headings.
-    Args:
-        text (str): Markdown source text.
-    Returns:
-        str: Text with Markdown headings converted to HTML.
-    """
-    text = re.sub(r'######## (.*)', r'<h8>\1</h8>', text)
-    text = re.sub(r'####### (.*)', r'<h7>\1</h7>', text)
-    text = re.sub(r'###### (.*)', r'<h6>\1</h6>', text)
-    text = re.sub(r'##### (.*)', r'<h5>\1</h5>', text)
-    text = re.sub(r'#### (.*)', r'<h4>\1</h4>', text)
-    text = re.sub(r'### (.*)', r'<h3>\1</h3>', text)
-    text = re.sub(r'## (.*)', r'<h2>\1</h2>', text)
-    text = re.sub(r'# (.*)', r'<h1>\1</h1>', text)
+    # ---------- h8 ----------
+    text = re.sub(
+        r'^########\s*\[([^\]]+)\]\s+(.*)$',
+        r'<h8 class="\1">\2</h8>',
+        text,
+        flags=re.MULTILINE
+    )
+    text = re.sub(
+        r'^########\s+(.*)$',
+        r'<h8>\1</h8>',
+        text,
+        flags=re.MULTILINE
+    )
+
+    # ---------- h7 ----------
+    text = re.sub(
+        r'^#######\s*\[([^\]]+)\]\s+(.*)$',
+        r'<h7 class="\1">\2</h7>',
+        text,
+        flags=re.MULTILINE
+    )
+    text = re.sub(
+        r'^#######\s+(.*)$',
+        r'<h7>\1</h7>',
+        text,
+        flags=re.MULTILINE
+    )
+
+    # ---------- h6 ----------
+    text = re.sub(
+        r'^######\s*\[([^\]]+)\]\s+(.*)$',
+        r'<h6 class="\1">\2</h6>',
+        text,
+        flags=re.MULTILINE
+    )
+    text = re.sub(
+        r'^######\s+(.*)$',
+        r'<h6>\1</h6>',
+        text,
+        flags=re.MULTILINE
+    )
+
+    # ---------- h5 ----------
+    text = re.sub(
+        r'^#####\s*\[([^\]]+)\]\s+(.*)$',
+        r'<h5 class="\1">\2</h5>',
+        text,
+        flags=re.MULTILINE
+    )
+    text = re.sub(
+        r'^#####\s+(.*)$',
+        r'<h5>\1</h5>',
+        text,
+        flags=re.MULTILINE
+    )
+
+    # ---------- h4 ----------
+    text = re.sub(
+        r'^####\s*\[([^\]]+)\]\s+(.*)$',
+        r'<h4 class="\1">\2</h4>',
+        text,
+        flags=re.MULTILINE
+    )
+    text = re.sub(
+        r'^####\s+(.*)$',
+        r'<h4>\1</h4>',
+        text,
+        flags=re.MULTILINE
+    )
+
+    # ---------- h3 ----------
+    text = re.sub(
+        r'^###\s*\[([^\]]+)\]\s+(.*)$',
+        r'<h3 class="\1">\2</h3>',
+        text,
+        flags=re.MULTILINE
+    )
+    text = re.sub(
+        r'^###\s+(.*)$',
+        r'<h3>\1</h3>',
+        text,
+        flags=re.MULTILINE
+    )
+
+    # ---------- h2 ----------
+    text = re.sub(
+        r'^##\s*\[([^\]]+)\]\s+(.*)$',
+        r'<h2 class="\1">\2</h2>',
+        text,
+        flags=re.MULTILINE
+    )
+    text = re.sub(
+        r'^##\s+(.*)$',
+        r'<h2>\1</h2>',
+        text,
+        flags=re.MULTILINE
+    )
+
+    # ---------- h1 ----------
+    text = re.sub(
+        r'^#\s*\[([^\]]+)\]\s+(.*)$',
+        r'<h1 class="\1">\2</h1>',
+        text,
+        flags=re.MULTILINE
+    )
+    text = re.sub(
+        r'^#\s+(.*)$',
+        r'<h1>\1</h1>',
+        text,
+        flags=re.MULTILINE
+    )
+
     return text
+
+
 
 
 # -------------------------------
@@ -369,6 +470,57 @@ def parse_fenced_divs(text: str) -> str:
     return "\n".join(output)
 
 
+#------------------------
+# Hr Tag Parsing
+#------------------------
+def parse_hr(text: str) -> str:
+    return re.sub(
+        r'^\s*(?:---|\*\*\*|___)\s*$',
+        '<hr />',
+        text,
+        flags=re.MULTILINE
+    )
+
+
+#------------------------
+# Blockquote Parsing
+#------------------------
+
+def parse_blockquotes(text: str) -> str:
+    lines = text.splitlines()
+    output = []
+    buffer = []
+
+    def flush():
+        if buffer:
+            inner_md = "\n".join(buffer)
+            inner_html = parse_markdown(inner_md, full_html=False)
+            output.append(f"<blockquote>\n{inner_html}\n</blockquote>")
+            buffer.clear()
+
+    for line in lines:
+        if line.lstrip().startswith(">"):
+            buffer.append(line.lstrip()[1:].lstrip())
+        else:
+            flush()
+            output.append(line)
+
+    flush()
+    return "\n".join(output)
+
+#------------------------
+# links Parsing
+#------------------------
+def parse_links(text: str) -> str:
+    return re.sub(
+        r'\[([^\]]+)\]\(([^)]+)\)',
+        r'<a href="\2">\1</a>',
+        text
+    )
+
+
+
+
 
 
 # -------------------------------
@@ -391,9 +543,12 @@ def parse_markdown(text:str,full_html:bool=True,title:str='Markdown to HTML',inc
     text = parse_fenced_divs(text)
     text = parse_code(text)          # MUST BE FIRST!!
     text = parse_headings(text)
+    text = parse_hr(text)
+    text = parse_blockquotes(text)
     text = parse_lists(text)
-    text = parse_inline(text)
     text = parse_images(text)
+    text = parse_links(text)
+    text = parse_inline(text)
     text = wrap_paragraphs(text)
     if full_html:
         html = _html_string(text=text,title=title,include_cdn=include_cdn)
@@ -402,17 +557,15 @@ def parse_markdown(text:str,full_html:bool=True,title:str='Markdown to HTML',inc
     return html
 
 
-
-
 # # # -------------------------------
 # # # RUN
 # # # -------------------------------
-if __name__ == "__main__":
-    with open("/home/dragoon/coding/pythonProjects/markdownToHtml/test_internal/test.md","r") as f:
-        content = f.read()
-    html = parse_markdown(content,title="Test Markdown")
-    with open("output.html", "w") as f:
-        f.write(html)
-
-    print("Converted!")
-
+# if __name__ == "__main__":
+#     with open("/home/dragoon/coding/pythonProjects/markdownToHtml/test_internal/test.md","r") as f:
+#         content = f.read()
+#     html = parse_markdown(content,title="Test Markdown")
+#     with open("output.html", "w") as f:
+#         f.write(html)
+#
+#     print("Converted!")
+#

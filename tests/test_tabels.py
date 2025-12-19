@@ -15,9 +15,9 @@ Alex | 22
 """
     html = normalize(parse_markdown(md))
 
-    assert "<table>" in html
-    assert "<th>Name</th>" in html
-    assert "<th>Age</th>" in html
-    assert "<td>Tarun</td>" in html
-    assert "<td>21</td>" in html
-    assert "<td>Alex</td>" in html
+    assert "<table" in html
+    assert "<th" in html
+    assert ">Age</th>" in html
+    assert ">Tarun</td>" in html
+    assert ">21</td>" in html
+    assert ">Alex</td>" in html

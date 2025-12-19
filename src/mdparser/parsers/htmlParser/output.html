@@ -1,319 +1,229 @@
-<html>
-
-<head>
-  <title>Test Markdown</title>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-  <script>hljs.highlightAll();</script>
-  <style>
-    h1 {
-      font-size: 2.25rem;
-      font-weight: 700;
-      margin: 1em 0;
-    }
 
-    h2 {
-      font-size: 1.875rem;
-      font-weight: 600;
-      margin: 0.9em 0;
-    }
+        <html>
+        <head>
+        <title>Test Markdown</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
+        <style>
+        h1 { font-size: 2.25rem; font-weight: 700; margin: 1em 0; }
+        h2 { font-size: 1.875rem; font-weight: 600; margin: 0.9em 0; }
+        h3 { font-size: 1.5rem; font-weight: 600; margin: 0.8em 0; }
+        h4 { font-size: 1.25rem; font-weight: 600; margin: 0.7em 0; }
+        h5 { font-size: 1.125rem; font-weight: 600; margin: 0.6em 0; }
+        h6 { font-size: 1rem; font-weight: 600; margin: 0.5em 0; }
 
-    h3 {
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin: 0.8em 0;
-    }
+        p { margin: 0.75em 0; line-height: 1.6; }
+        ul, ol { margin: 1em 0 1em 1.5em; }
+        li { margin: 0.25em 0; }
+        code { background: #f6f8fa; padding: 2px 4px; border-radius: 4px; }
+        </style>       
+        </head>
+        <body>
+        <div class="w-[80%] mx-auto my-8 prose prose-lg">
 
-    h4 {
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin: 0.7em 0;
-    }
 
-    h5 {
-      font-size: 1.125rem;
-      font-weight: 600;
-      margin: 0.6em 0;
-    }
+<h1>Heading Level 1</h1>
 
-    h6 {
-      font-size: 1rem;
-      font-weight: 600;
-      margin: 0.5em 0;
-    }
+<p>Some text under H1 with <strong>bold</strong>, <em>italic</em>, and <code>inline code</code>.</p>
 
-    p {
-      margin: 0.75em 0;
-      line-height: 1.6;
-    }
+<h2>Heading Level 2</h2>
 
-    ul,
-    ol {
-      margin: 1em 0 1em 1.5em;
-    }
+<p>More text with <strong>bold and <em>nested italic</em> inside</strong>.</p>
 
-    li {
-      margin: 0.25em 0;
-    }
+<h3>Heading Level 3</h3>
 
-    code {
-      background: #f6f8fa;
-      padding: 2px 4px;
-      border-radius: 4px;
-    }
-  </style>
-</head>
+<p>Mixing formatting: <em>italic with <code>inline code</code> inside</em> and <strong>bold</strong>.</p>
 
-<body>
-  <div class="w-[80%] mx-auto my-8 prose prose-lg">
+<h4>Heading Level 4</h4>
 
+<p>A tricky line: <strong>bold with <em>italic and <code>code</code> inside</em> bold</strong>.</p>
 
-    <h1>Heading Level 1</h1>
+<h5>Heading Level 5</h5>
 
-    <p>Some text under H1 with <strong>bold</strong>, <em>italic</em>, and <code>inline code</code>.</p>
+<p>Below is a code snippet:</p>
 
-    <h2>Heading Level 2</h2>
+<h6>Heading Level 6</h6>
 
-    <p>More text with <strong>bold and <em>nested italic</em> inside</strong>.</p>
+<p>Inline formatting in paragraphs:</p>
+<p>This is <strong>bold</strong>, this is <em>italic</em>, and this is <code>code</code>.</p>
 
-    <h3>Heading Level 3</h3>
+<h7>Heading Level 7</h7>
+<p>Paragraph mixing formats:</p>
+<strong>Start <em>middle <code>code</code> middle</em> end</strong>
 
-    <p>Mixing formatting: <em>italic with <code>inline code</code> inside</em> and <strong>bold</strong>.</p>
+<h8>Heading Level 8</h8>
+<p>Final line with everything:</p>
+<p><strong>Bold text</strong>, <em>italic text</em>, and <code>inline code</code> all in one sentence.</p>
+<hr />
+<h2>Unordered List Test</h2>
 
-    <h4>Heading Level 4</h4>
+<ul>
+<li>Apple</li>
+<li>Banana</li>
+<li>Cherry</li>
+</ul>
 
-    <p>A tricky line: <strong>bold with <em>italic and <code>code</code> inside</em> bold</strong>.</p>
+<h2>Ordered List Torture Test</h2>
 
-    <h5>Heading Level 5</h5>
+<p>This paragraph comes before an ordered list.</p>
 
-    <p>Below is a code snippet:</p>
+<ol>
+<li>First item</li>
+<li>Second item with <em>italic</em> text</li>
+<li>Third item with <strong>bold</strong> text</li>
+</ol>
 
-    <h6>Heading Level 6</h6>
+<p>Here is another paragraph between lists.</p>
 
-    <p>Inline formatting in paragraphs:</p>
-    <p>This is <strong>bold</strong>, this is <em>italic</em>, and this is <code>code</code>.</p>
+<ol>
+<li>This list restarts numbering</li>
+<li>Item with nested formatting <strong>bold <em>italic <code>code</code> inside</em> bold</strong></li>
+<li>Item with multiple lines:</li>
+</ol>
+<p>This line should belong to the same list item.</p>
+<p>So should this line.</p>
 
-    <h7>Heading Level 7</h7>
-    <p>Paragraph mixing formats:</p>
-    <strong>Start <em>middle <code>code</code> middle</em> end</strong>
+<h3>Section Break</h3>
 
-    <h8>Heading Level 8</h8>
-    <p>Final line with everything:</p>
-    <p><strong>Bold text</strong>, <em>italic text</em>, and <code>inline code</code> all in one sentence.</p>
+<p>Another paragraph.</p>
 
-    <p>---</p>
+<ol>
+<li>This list starts at 10 (valid markdown)</li>
+<li>Next item</li>
+<li>Non-consecutive numbering is allowed</li>
+<li>Item with inline code: <code>print("hello")</code></li>
+</ol>
 
-    <h2>Unordered List Test</h2>
+<p>Paragraph mixing formats: <em>italic</em>, <strong>bold</strong>, and <code>code</code>.</p>
 
-    <ul>
-      <li>Apple</li>
-      <li>Banana</li>
-      <li>Cherry</li>
-    </ul>
+<ol>
+<li>Item with weird spacing after number</li>
+<li>Item with leading spaces before number should not be a list</li>
+<li>This line begins with a space → should NOT be parsed as list</li>
+<li>Last item with bold and code: <strong>value = <code>42</code></strong></li>
+</ol>
 
-    <h2>Ordered List Torture Test</h2>
+<p>Final paragraph after all lists.</p>
+<hr />
+<h2>Fenced Div Test</h2>
 
-    <p>This paragraph comes before an ordered list.</p>
+<div class="hero font-2xl">
 
-    <ol>
-      <li>First item</li>
-      <li>Second item with <em>italic</em> text</li>
-      <li>Third item with <strong>bold</strong> text</li>
-    </ol>
+<h1>Welcome</h1>
 
-    <p>Here is another paragraph between lists.</p>
+<p>This is a hero section.</p>
+<p>Here is another paragraph between lists.</p>
 
-    <ol>
-      <li>This list restarts numbering</li>
-      <li>Item with nested formatting <strong>bold <em>italic <code>code</code> inside</em> bold</strong></li>
-      <li>Item with multiple lines:</li>
-    </ol>
-    <p>This line should belong to the same list item.</p>
-    <p>So should this line.</p>
-
-    <h3>Section Break</h3>
-
-    <p>Another paragraph.</p>
-
-    <ol>
-      <li>This list starts at 10 (valid markdown)</li>
-      <li>Next item</li>
-      <li>Non-consecutive numbering is allowed</li>
-      <li>Item with inline code: <code>print("hello")</code></li>
-    </ol>
+<ol>
+<li>This list restarts numbering</li>
+<li>Item with nested formatting <strong>bold <em>italic <code>code</code> inside</em> bold</strong></li>
+<li>Item with multiple lines:</li>
+</ol>
+<p>This line should belong to the same list item.</p>
+<p>So should this line.</p>
 
-    <p>Paragraph mixing formats: <em>italic</em>, <strong>bold</strong>, and <code>code</code>.</p>
+<h3>Section Break</h3>
 
-    <ol>
-      <li>Item with weird spacing after number</li>
-      <li>Item with leading spaces before number should not be a list</li>
-      <li>This line begins with a space → should NOT be parsed as list</li>
-      <li>Last item with bold and code: <strong>value = <code>42</code></strong></li>
-    </ol>
-
-    <p>Final paragraph after all lists.</p>
-
-    <p>---</p>
-
-    <h2>Fenced Div Test</h2>
-
-    <div class="hero font-2xl">
-
-      <h1>Welcome</h1>
-
-      <p>This is a hero section.</p>
-      <p>Here is another paragraph between lists.</p>
-
-      <ol>
-        <li>This list restarts numbering</li>
-        <li>Item with nested formatting <strong>bold <em>italic <code>code</code> inside</em> bold</strong></li>
-        <li>Item with multiple lines:</li>
-      </ol>
-      <p>This line should belong to the same list item.</p>
-      <p>So should this line.</p>
-
-      <h3>Section Break</h3>
-
-      <p>Another paragraph.</p>
-
-      <ol>
-        <li>This list starts at 10 (valid markdown)</li>
-        <li>Next item</li>
-        <li>Non-consecutive numbering is allowed</li>
-        <li>Item with inline code: <code>print("hello")</code></li>
-      </ol>
-
-      <p>Paragraph mixing formats: <em>italic</em>, <strong>bold</strong>, and <code>code</code>.</p>
-
-      <ol>
-        <li>Item with weird spacing after number</li>
-        <li>Item with leading spaces before number should not be a list</li>
-        <li>This line begins with a space → should NOT be parsed as list</li>
-        <li>Last item with bold and code: <strong>value = <code>42</code></strong></li>
-      </ol>
-
-      <p>Final paragraph inside hero block.</p>
-    </div>
-
-    <code>
-      <pre><code class="language-bash">
-          <p>echo "Converted!"</p>
-        </code></pre>
-
-      <pre><code class="language-bash">
-          echo "Converted!"
-        </code></pre>
-
-      <pre><code class="language-bash">
-          echo "Converted!"
-        </code></pre>
-
-      <h1>Table Test Suite</h1>
-
-      Normal paragraph before table.
-
-
-      <table style="border-collapse:collapse;width:100%;margin:1em 0;">
-        <thead>
-          <tr>
-            <th style="border:1px solid #d0d7de;padding:8px 12px;background:#f6f8fa;text-align:left;">Name</th>
-            <th style="border:1px solid #d0d7de;padding:8px 12px;background:#f6f8fa;text-align:left;">Role</th>
-            <th style="border:1px solid #d0d7de;padding:8px 12px;background:#f6f8fa;text-align:left;">Age</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td style="border:1px solid #d0d7de;padding:8px 12px;">Tarun</td>
-            <td style="border:1px solid #d0d7de;padding:8px 12px;">Developer</td>
-            <td style="border:1px solid #d0d7de;padding:8px 12px;">21</td>
-          </tr>
-          <tr>
-            <td style="border:1px solid #d0d7de;padding:8px 12px;">Alex</td>
-            <td style="border:1px solid #d0d7de;padding:8px 12px;">Tester</td>
-            <td style="border:1px solid #d0d7de;padding:8px 12px;">22</td>
-          </tr>
-        </tbody>
-      </table>
-
-
-      Paragraph between blocks.
-
-      <div class="hero">
-        <h2>Team Members</h2>
-
-
-        <table style="border-collapse:collapse;width:100%;margin:1em 0;">
-          <thead>
-            <tr>
-              <th style="border:1px solid #d0d7de;padding:8px 12px;background:#f6f8fa;text-align:left;">Name</th>
-              <th style="border:1px solid #d0d7de;padding:8px 12px;background:#f6f8fa;text-align:left;">Skill</th>
-              <th style="border:1px solid #d0d7de;padding:8px 12px;background:#f6f8fa;text-align:left;">Level</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td style="border:1px solid #d0d7de;padding:8px 12px;">Tarun</td>
-              <td style="border:1px solid #d0d7de;padding:8px 12px;">Python</td>
-              <td style="border:1px solid #d0d7de;padding:8px 12px;">Advanced</td>
-            </tr>
-            <tr>
-              <td style="border:1px solid #d0d7de;padding:8px 12px;">Alex</td>
-              <td style="border:1px solid #d0d7de;padding:8px 12px;">QA</td>
-              <td style="border:1px solid #d0d7de;padding:8px 12px;">Intermediate</td>
-            </tr>
-          </tbody>
-        </table>
-
-
-        <p>End of hero section.</p>
-      </div>
-
-      <h3>Table with formatting</h3>
-
-
-      <table style="border-collapse:collapse;width:100%;margin:1em 0;">
-        <thead>
-          <tr>
-            <th style="border:1px solid #d0d7de;padding:8px 12px;background:#f6f8fa;text-align:left;">Item</th>
-            <th style="border:1px solid #d0d7de;padding:8px 12px;background:#f6f8fa;text-align:left;">Description</th>
-            <th style="border:1px solid #d0d7de;padding:8px 12px;background:#f6f8fa;text-align:left;">Code</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td style="border:1px solid #d0d7de;padding:8px 12px;">Laptop</td>
-            <td style="border:1px solid #d0d7de;padding:8px 12px;"><strong>Fast <em>machine</em></strong></td>
-            <td style="border:1px solid #d0d7de;padding:8px 12px;">
-    </code>print("ok")<code></td>
-      </tr>
-      <tr>
-        <td style="border:1px solid #d0d7de;padding:8px 12px;">Server</td>
-        <td style="border:1px solid #d0d7de;padding:8px 12px;">Handles <strong><em>traffic</em></strong></td>
-        <td style="border:1px solid #d0d7de;padding:8px 12px;">
-    </code>nginx`</td>
-    </tr>
-    </tbody>
-    </table>
-
-
-    Final paragraph after everything.
-    <div class="card border p-4">
-      <p>This has <strong>bold</strong>, <em>italic</em>, and <code>inline code</code>.</p>
-      <div class="hero font-2xl bg-blue-100 p-4">
-        <h1>Welcome</h1>
-        <p>This section contains a heading and paragraph.</p>
-      </div>
-    </div>
-    <img src="https://source.unsplash.com/random/800x600/?nature" alt="A beautiful nature photo" />
-    <img src="https://picsum.photos/200/300" alt="A beautiful nature photo" />
-
-    <img src="https://picsum.photos/200/300" alt="A cat" title="Cute Cat" />
-  </div>
-</body>
-
-</html>
+<p>Another paragraph.</p>
+
+<ol>
+<li>This list starts at 10 (valid markdown)</li>
+<li>Next item</li>
+<li>Non-consecutive numbering is allowed</li>
+<li>Item with inline code: <code>print("hello")</code></li>
+</ol>
+
+<p>Paragraph mixing formats: <em>italic</em>, <strong>bold</strong>, and <code>code</code>.</p>
+
+<ol>
+<li>Item with weird spacing after number</li>
+<li>Item with leading spaces before number should not be a list</li>
+<li>This line begins with a space → should NOT be parsed as list</li>
+<li>Last item with bold and code: <strong>value = <code>42</code></strong></li>
+</ol>
+
+<p>Final paragraph inside hero block.</p>
+</div>
+
+<code><pre><code class="language-bash">
+<p>echo "Converted!"</p>
+</code></pre>
+
+<pre><code class="language-bash">
+echo "Converted!"
+</code></pre>
+
+<pre><code class="language-bash">
+echo "Converted!"
+</code></pre>
+
+<h1>Table Test Suite</h1>
+
+Normal paragraph before table.
+
+
+<table style="border-collapse:collapse;width:100%;margin:1em 0;">
+<thead><tr><th style="border:1px solid #d0d7de;padding:8px 12px;background:#f6f8fa;text-align:left;">Name</th><th style="border:1px solid #d0d7de;padding:8px 12px;background:#f6f8fa;text-align:left;">Role</th><th style="border:1px solid #d0d7de;padding:8px 12px;background:#f6f8fa;text-align:left;">Age</th></tr></thead>
+<tbody><tr><td style="border:1px solid #d0d7de;padding:8px 12px;">Tarun</td><td style="border:1px solid #d0d7de;padding:8px 12px;">Developer</td><td style="border:1px solid #d0d7de;padding:8px 12px;">21</td></tr><tr><td style="border:1px solid #d0d7de;padding:8px 12px;">Alex</td><td style="border:1px solid #d0d7de;padding:8px 12px;">Tester</td><td style="border:1px solid #d0d7de;padding:8px 12px;">22</td></tr></tbody>
+</table>
+
+
+Paragraph between blocks.
+
+<div class="hero">
+<h2>Team Members</h2>
+
+
+<table style="border-collapse:collapse;width:100%;margin:1em 0;">
+<thead><tr><th style="border:1px solid #d0d7de;padding:8px 12px;background:#f6f8fa;text-align:left;">Name</th><th style="border:1px solid #d0d7de;padding:8px 12px;background:#f6f8fa;text-align:left;">Skill</th><th style="border:1px solid #d0d7de;padding:8px 12px;background:#f6f8fa;text-align:left;">Level</th></tr></thead>
+<tbody><tr><td style="border:1px solid #d0d7de;padding:8px 12px;">Tarun</td><td style="border:1px solid #d0d7de;padding:8px 12px;">Python</td><td style="border:1px solid #d0d7de;padding:8px 12px;">Advanced</td></tr><tr><td style="border:1px solid #d0d7de;padding:8px 12px;">Alex</td><td style="border:1px solid #d0d7de;padding:8px 12px;">QA</td><td style="border:1px solid #d0d7de;padding:8px 12px;">Intermediate</td></tr></tbody>
+</table>
+
+
+<p>End of hero section.</p>
+</div>
+
+<h3>Table with formatting</h3>
+
+
+<table style="border-collapse:collapse;width:100%;margin:1em 0;">
+<thead><tr><th style="border:1px solid #d0d7de;padding:8px 12px;background:#f6f8fa;text-align:left;">Item</th><th style="border:1px solid #d0d7de;padding:8px 12px;background:#f6f8fa;text-align:left;">Description</th><th style="border:1px solid #d0d7de;padding:8px 12px;background:#f6f8fa;text-align:left;">Code</th></tr></thead>
+<tbody><tr><td style="border:1px solid #d0d7de;padding:8px 12px;">Laptop</td><td style="border:1px solid #d0d7de;padding:8px 12px;"><strong>Fast <em>machine</em></strong></td><td style="border:1px solid #d0d7de;padding:8px 12px;"></code>print("ok")<code></td></tr><tr><td style="border:1px solid #d0d7de;padding:8px 12px;">Server</td><td style="border:1px solid #d0d7de;padding:8px 12px;">Handles <strong><em>traffic</em></strong></td><td style="border:1px solid #d0d7de;padding:8px 12px;"></code>nginx`</td></tr></tbody>
+</table>
+
+
+Final paragraph after everything.
+<div class="card border p-4">
+<p>This has <strong>bold</strong>, <em>italic</em>, and <code>inline code</code>.</p>
+<div class="hero font-2xl bg-blue-100 p-4">
+<h1>Welcome</h1>
+<p>This section contains a heading and paragraph.</p>
+</div>
+<h3 class="text-blue-500 hover:text-blue-700">hello world h3 it is</h3>
+
+<h4 class="text-blue-500 hover:text-blue-700">hello world h4 it is</h4>
+</div>
+<img src="https://source.unsplash.com/random/800x600/?nature" alt="A beautiful nature photo" />
+<img src="https://picsum.photos/200/300" alt="A beautiful nature photo" />
+
+<img src="https://picsum.photos/200/300" alt="A cat" title="Cute Cat" />
+<hr />
+<hr />
+<blockquote>
+<p>Line one</p>
+<p>Line two</p>
+</blockquote>
+
+
+<a href="https://openai.com">OpenAI</a>
+
+</div>
+        </body>
+        </html>
+        
