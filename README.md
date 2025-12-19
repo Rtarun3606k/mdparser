@@ -61,7 +61,7 @@ Tailwind is included automatically when `include_cdn=True` is set.
 Example:
 
 ```md
-:::
+::: bg-blue-100 p-4 rounded-lg
 
 # Welcome
 
