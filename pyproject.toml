@@ -7,7 +7,6 @@ name = "mdparser-html"
 version = "0.2.2"
 description = """
 mdparser-html is a lightweight and extensible Markdown → HTML converter with a clean Python API and CLI.
-
 It is designed for simplicity, hackability, and learning — without pulling in heavy dependencies.
 """
 readme = "README.md"
