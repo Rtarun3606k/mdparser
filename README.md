@@ -11,7 +11,7 @@ Built for simplicity, hackability, and future extension.
 
 ## Documentation
 
-![API Documentation](https://mdparser.tarunnayaka.me) -> https://mdparser.tarunnayaka.me
+![API Documentation]("https://mdparser.tarunnayaka.me")     -> https://mdparser.tarunnayaka.me
 
 ## 🤔 Why mdparser-html?
 
