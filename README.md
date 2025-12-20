@@ -4,6 +4,9 @@ A lightweight, extensible **Markdown → HTML** converter with a clean Python AP
 
 Built for simplicity, hackability, and future extension.
 
+![Banner](https://github.com/user-attachments/assets/4d38335f-bdbc-411e-8889-c9ac8444fce2)
+
+
 ---
 
 ## Documentation
