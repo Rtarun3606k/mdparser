@@ -4,31 +4,40 @@ import argparse
 from mdparser.core import parse_markdown
 
 
+
+
 def main():
     parser = argparse.ArgumentParser(
-        prog="md2html", description="Convert Markdown to HTML"
+        prog="md2html",
+        description="Convert Markdown to HTML"
     )
 
-    parser.add_argument("input", help="Path to the input Markdown file")
+    parser.add_argument(
+        "input",
+        help="Path to the input Markdown file"
+    )
 
     parser.add_argument(
-        "-o", "--output", help="Path to the output HTML file (default: stdout)"
+        "-o", "--output",
+        help="Path to the output HTML file (default: stdout)"
     )
 
     parser.add_argument(
         "--body-only",
         action="store_true",
-        help="Output HTML body only (no <html>/<head>)",
+        help="Output HTML body only (no <html>/<head>)"
     )
 
     parser.add_argument(
         "--no-cdn",
         action="store_true",
-        help="Do not include syntax-highlighting CDN links",
+        help="Do not include syntax-highlighting CDN links"
     )
 
     parser.add_argument(
-        "--title", default="Markdown to HTML", help="HTML document title"
+        "--title",
+        default="Markdown to HTML",
+        help="HTML document title"
     )
 
     args = parser.parse_args()
@@ -40,7 +49,7 @@ def main():
         markdown,
         full_html=not args.body_only,
         include_cdn=not args.no_cdn,
-        title=args.title,
+        title=args.title
     )
 
     if args.output:
